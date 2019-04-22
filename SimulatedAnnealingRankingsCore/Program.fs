@@ -1,18 +1,15 @@
 ﻿open KendallTauDistance
 open SimulatedAnnealing
 
-let r1 = [[4]; [2]; [1]; [3;11]; [7;14;16;5;8;9;10;13;15;6;12]]
-let r2 = [[7;14;16;5;8;9;10;13;15;6;12]; [3;11]; [1]; [2]; [4]]
-let r3 = [[1]; [11;2;7;16;5;8;9;10;13;15]; [4]; [3]; [14;6;12]]
-let r4 = [[11;4;3;12;6;14]; [1]; [2]; [10;13;15;16;5;8;9;7]]
-let r5 = [[10;13;15;16;5;8;9;7]; [1]; [2]; [11];[4];[3];[12;6;14]]
-let r6 = [[12;6;14]; [3]; [4]; [11]; [2]; [1]; [10;13;15;16;5;8;9;7]]
-let r7 = [[11]; [12]; [10;13;15;6]; [2]; [1;16;5;8;9]; [4]; [3]; [7;14]]
-let r8 = [[7;14]; [3]; [4]; [1;16;5;8;9]; [2]; [10;13;15;6]; [12]; [11]]
+let r1 = [[3]; [6;5]; [11]; [12;4;1;8;7;13;2;10;9]]
+let r2 = [[3]; [2;10]; [5]; [11;6;4;13]; [7]; [8]; [12]; [9]; [1]]
+let r3 = [[2;10]; [4;13]; [3]; [11;7]; [5;8]; [6;12]; [9]; [1]]
+let r4 = [[12;11;6;4;1]; [8;7;13]; [5]; [3]; [2;10]; [9]]
+
 
 [<EntryPoint>]
 let main _ = 
-    let rankings = [r1;r2;r3;r4;r5;r6;r7;r8]
+    let rankings = [r1;r2;r3;r4]
     let output = new System.IO.StringWriter() 
     
     output.WriteLine "== Rankings =="
@@ -34,7 +31,7 @@ let main _ =
     
     output.WriteLine ""
 
-    let consensus = [[11]; [4]; [1]; [2]; [3]; [14; 6; 12]; [7; 16; 5; 8; 9; 10; 13; 15]]
+    let consensus = [[3]; [5]; [2;10]; [6;11;4]; [13]; [7]; [8]; [12]; [9]; [1]]
     output.WriteLine "== Consensus =="
     sprintf "%A" consensus |> output.WriteLine
     printKendallTauDistanceStats (kendallTauDistanceMultiStats consensus rankings)
